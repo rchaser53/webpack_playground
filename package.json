@@ -1,0 +1,25 @@
+{
+  "name": "webpack_playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rchaser53/webpack_playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rchaser53/webpack_playground/issues"
+  },
+  "homepage": "https://github.com/rchaser53/webpack_playground#readme",
+  "dependencies": {
+    "vue": "^2.5.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  }
+}
