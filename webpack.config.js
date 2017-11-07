@@ -1,3 +1,4 @@
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require('webpack');
 const path = require("path");
 
@@ -15,7 +16,7 @@ module.exports = {
     filename: "[name].js"
   },
   resolve: {
-      extensions: ['.html', '.js']
+      extensions: ['.html', '.js', '.less']
   },
   module: {
     rules:[{
@@ -25,6 +26,13 @@ module.exports = {
       ],
       include: path.join(__dirname, 'src'),
       exclude:["node_modules/*"]
+  },
+  {
+    test: /\.less$/,
+    use: ExtractTextPlugin.extract({
+      fallback: "style-loader",
+      use: [ 'css-loader', 'less-loader' ]
+    })
   }]},
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -32,7 +40,8 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       chunks: ['index1', 'index2'],
-    })
+    }),
+    new ExtractTextPlugin("styles.css")
   ],
   externals: [
     { Vue: true }
