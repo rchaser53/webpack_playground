@@ -1,2 +1,2 @@
 import lodash from 'lodash'
-console.log(2)
+console.log(2, $)

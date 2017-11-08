@@ -1,3 +1,5 @@
+console.log(require.resolve('jquery'), 0)
+
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require('webpack');
 const path = require("path");
@@ -26,14 +28,22 @@ module.exports = {
       ],
       include: path.join(__dirname, 'src'),
       exclude:["node_modules/*"]
-  },
-  {
-    test: /\.less$/,
-    use: ExtractTextPlugin.extract({
-      fallback: "style-loader",
-      use: [ 'css-loader', 'less-loader' ]
-    })
-  }]},
+    },
+    {
+      test: /\.less$/,
+      use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: [ 'css-loader', 'less-loader' ]
+      })
+    },
+    {
+      test: require.resolve('jquery'),
+      use: [{
+        loader: 'expose-loader',
+        options: '$'
+      }]
+    }
+    ]},
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
