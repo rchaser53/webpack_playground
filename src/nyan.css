@@ -1,0 +1,13 @@
+@media (max-width: 2000px) {
+  .modal-backdrop.fade.in {
+      display: none;
+  }
+}
+
+.abc {
+  width: 100px;
+}
+
+.def {
+  height: 180px;
+}

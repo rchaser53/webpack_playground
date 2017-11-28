@@ -37,6 +37,23 @@ module.exports = {
       })
     },
     {
+      test: /\.css$/,
+      loaders: [ 'style-loader', 'css-loader' ]
+    },
+    {
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file-loader',
+      query: {
+        name: '[name].[ext]?[hash]'
+      }
+    },
+    {
+      test: /\.html$/,
+      loaders:[
+        'html-loader'
+      ]
+    },
+    {
       test: require.resolve('jquery'),
       use: [{
         loader: 'expose-loader',
