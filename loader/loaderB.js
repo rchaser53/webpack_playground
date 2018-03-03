@@ -1,10 +1,10 @@
 function pitch(...args) {
-  console.log('pitch')
-  return
+  console.log('pitchB')
+  return "gyohe-"
 }
 
 function loader(...args) {
-  console.log('loader')
+  console.log('loaderB')
   return 'nya-n'
 }
 

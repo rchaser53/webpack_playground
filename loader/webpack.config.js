@@ -16,7 +16,15 @@ module.exports = {
     rules:[
       {
         test: /\.js$/,
-        loader: path.resolve(__dirname, 'loader.js')
+        use: [
+          {
+            loader: path.resolve(__dirname, './loaderA.js')
+          },
+          {
+            loader: path.resolve(__dirname, './loaderB.js')
+          }
+        ]
+        
       }
     ]},
   plugins: [

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nyan": "webpack --config webpack.nyan.js",
+    "nyan": "webpack --config loader/webpack.config.js",
     "build": "webpack",
     "start": "webpack-dev-server"
   },
