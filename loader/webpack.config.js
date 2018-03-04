@@ -5,14 +5,13 @@ const cacheKey = () => {
   return Date.now()
 }
 
-const read = (key, callback) => {
-  client = redis.createClient();
-  client.on("error", (err) => {
-    console.log("Error " + err);
-  });
+const client = redis.createClient();
+client.on("error", (err) => {
+  console.log("Error " + err);
+});
 
+const read = (key, callback) => {
   client.get(key, (err, ret) => {
-    client.quit();
     if (ret == null) {
       callback(new Error('cache not found'));
       return
@@ -23,12 +22,7 @@ const read = (key, callback) => {
 }
 
 const write = (key, value, callback) => {
-  client = redis.createClient();
-  client.on("error", (err) => {
-    console.log("Error " + err);
-  });
   client.set(key, JSON.stringify(value), (err) => {
-    client.quit();
     console.log('call set')
     if (err) throw new Error(err)
     callback();
@@ -36,8 +30,9 @@ const write = (key, value, callback) => {
 }
 
 module.exports = {
+  mode: 'development',
   entry: {
-    index: "./ori/index.js"
+    index: path.resolve(__dirname, "../ori/index.js")
   },
   output: {
     path: path.resolve(__dirname, "./ori/dist"),
