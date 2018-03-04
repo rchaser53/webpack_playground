@@ -30,8 +30,9 @@ const cacheKey = () => {
 // }
 
 module.exports = {
+  devtool: 'inline-source-map',
   // mode: 'development',
-  mode: 'production',
+  // mode: 'production',
   entry: {
     index: path.resolve(__dirname, "../ori/index.js")
   },
@@ -55,13 +56,13 @@ module.exports = {
       {
         test: /\.js$/,
         use: [
-          {
-            loader: 'cache-loader',
-            // options: {
-            //   read,
-            //   write
-            // }
-          },
+          // {
+          //   loader: 'cache-loader',
+          //   // options: {
+          //   //   read,
+          //   //   write
+          //   // }
+          // },
           {
             loader: path.resolve(__dirname, './loaderA.js')
           },
