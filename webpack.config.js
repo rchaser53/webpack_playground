@@ -4,6 +4,9 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require('webpack');
 const path = require("path");
 
+// config.optimization.splitChunks
+
+
 module.exports = {
 	context: path.resolve(__dirname, './src'),
   devtool: 'inline-source-map',
@@ -24,6 +27,7 @@ module.exports = {
     rules:[{
       test: /\.(ts|tsx)$/,
       loaders:[
+        'cache-loader',
         'babel-loader'
       ],
       include: path.join(__dirname, 'src'),
@@ -61,14 +65,24 @@ module.exports = {
       }]
     }
     ]},
+    // optimization:{
+    //   runtimeChunk: true,
+    //   splitChunks: {
+    //     chunks: "initial",
+    //     cacheGroups: {
+    //         default: false,
+    //         vendors: false,
+    //     },
+    //   },
+    // },
+    //  CommonsChunkPlugin({
+    //   name: 'vendor',
+    //   chunks: ['index1', 'index2'],
+    // }),
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      chunks: ['index1', 'index2'],
-    }),
-    new ExtractTextPlugin("styles.css")
+    // new webpack.HotModuleReplacementPlugin(),
+    // new webpack.NoEmitOnErrorsPlugin(),
+    // new ExtractTextPlugin("styles.css")
   ],
   externals: [
     { Vue: true }
