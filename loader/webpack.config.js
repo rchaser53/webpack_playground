@@ -5,32 +5,33 @@ const cacheKey = () => {
   return Date.now()
 }
 
-const client = redis.createClient();
-client.on("error", (err) => {
-  console.log("Error " + err);
-});
+// const client = redis.createClient();
+// client.on("error", (err) => {
+//   console.log("Error " + err);
+// });
 
-const read = (key, callback) => {
-  client.get(key, (err, ret) => {
-    if (ret == null) {
-      callback(new Error('cache not found'));
-      return
-    }
-    if (err) throw new Error(err)
-    callback(null, JSON.parse(ret));
-  })
-}
+// const read = (key, callback) => {
+//   client.get(key, (err, ret) => {
+//     if (ret == null) {
+//       callback(new Error('cache not found'));
+//       return
+//     }
+//     if (err) throw new Error(err)
+//     callback(null, JSON.parse(ret));
+//   })
+// }
 
-const write = (key, value, callback) => {
-  client.set(key, JSON.stringify(value), (err) => {
-    console.log('call set')
-    if (err) throw new Error(err)
-    callback();
-  })    
-}
+// const write = (key, value, callback) => {
+//   client.set(key, JSON.stringify(value), (err) => {
+//     console.log('call set')
+//     if (err) throw new Error(err)
+//     callback();
+//   })
+// }
 
 module.exports = {
-  mode: 'development',
+  // mode: 'development',
+  mode: 'production',
   entry: {
     index: path.resolve(__dirname, "../ori/index.js")
   },
@@ -43,16 +44,23 @@ module.exports = {
       extensions: ['.html', '.js']
   },
   module: {
+    // rules:[
+    //   {
+    //     test: /\.js$/,
+    //     loader: 'babel-loader',
+    //   }
+    // ]
+
     rules:[
       {
         test: /\.js$/,
         use: [
           {
             loader: 'cache-loader',
-            options: {
-              read,
-              write
-            }
+            // options: {
+            //   read,
+            //   write
+            // }
           },
           {
             loader: path.resolve(__dirname, './loaderA.js')
@@ -62,5 +70,6 @@ module.exports = {
           }
         ]
       }
-    ]}
+    ]
+  }
 };
