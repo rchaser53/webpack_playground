@@ -118,12 +118,16 @@ module.exports = {
       {
         test: /\.js$/,
         use: [
+          // {
+          //   loader: 'cache-loader',
+          //   // options: {
+          //   //   read,
+          //   //   write
+          //   // }
+          // },
           {
-            loader: 'cache-loader',
-            options: {
-              read,
-              write
-            }
+            loader: 'eslint-loader',
+            options: { fix: true, failOnError: true, parserOptions: { ecmaVersion: 2017 } },
           },
           {
             loader: path.resolve(__dirname, './loaderA.js')
