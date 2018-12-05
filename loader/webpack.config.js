@@ -1,3 +1,5 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const path = require('path')
 // const redis = require("redis");
 
@@ -87,7 +89,11 @@ module.exports = {
     filename: "[name].js"
   },
   resolve: {
-      extensions: ['.html', '.js']
+    extensions: ['.html', '.js'],
+  },
+  plugins: [new BundleAnalyzerPlugin()],
+  devServer: {
+    port: 3000,
   },
   module: {
     // rules:[
